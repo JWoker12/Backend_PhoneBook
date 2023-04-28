@@ -56,7 +56,7 @@ app.post('/api/persons', jsonParser, (req, res) => {
         phone: body.phone
     }
     persons.push(person)
-    res.send(persons)
+    res.send(person)
 })
 app.delete('/api/persons/:id', (req, res) => {
     const id = Number(req.params.id)
