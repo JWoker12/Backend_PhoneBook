@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const app = express()
 morgan.token('res-body', (req, res) => JSON.stringify(req.body))
 app.use(express.json(),cors(), morgan(':method, :url, :status, :res[content-length] - :response-time ms, :res-body'))
+const jsonParser = bodyParser.json()
 const port = 3002
 const persons = [
     {
@@ -36,7 +37,7 @@ app.get('/api/persons/:id', (req, res) => {
     const person = persons.find(p => p.id === id)
     person ? res.json(person) : res.status(404).end()
 })
-app.post('/api/persons', bodyParser, (body, res) => {
+app.post('/api/persons', jsonParser, (body, res) => {
     if(!body.name || !body.phone){
         return res.status(400).json({
             error: 'Content Missing'
