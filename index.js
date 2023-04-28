@@ -1,8 +1,9 @@
 const express = require('express')
 const morgan = require('morgan')
+const cors = require('cors')
 const app = express()
 morgan.token('res-body', (req, res) => JSON.stringify(req.body))
-app.use(express.json(), morgan(':method, :url, :status, :res[content-length] - :response-time ms, :res-body'))
+app.use(express.json(),cors(), morgan(':method, :url, :status, :res[content-length] - :response-time ms, :res-body'))
 const port = 3001
 const persons = [
     {
