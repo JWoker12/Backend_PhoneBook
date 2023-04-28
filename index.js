@@ -37,7 +37,8 @@ app.get('/api/persons/:id', (req, res) => {
     const person = persons.find(p => p.id === id)
     person ? res.json(person) : res.status(404).end()
 })
-app.post('/api/persons', jsonParser, (body, res) => {
+app.post('/api/persons', jsonParser, (req, res) => {
+    const body = req.body
     if(!body.name || !body.number){
         return res.status(400).json({
             error: 'Content Missing'
