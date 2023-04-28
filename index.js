@@ -4,7 +4,7 @@ const cors = require('cors')
 const app = express()
 morgan.token('res-body', (req, res) => JSON.stringify(req.body))
 app.use(express.json(),cors(), morgan(':method, :url, :status, :res[content-length] - :response-time ms, :res-body'))
-const port = 3001
+const port = 3002
 const persons = [
     {
         name: "Ada Lovelace",
