@@ -1,11 +1,9 @@
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
-const bodyParser = require('body-parser')
 const app = express()
 morgan.token('res-body', (req, res) => JSON.stringify(req.body))
 app.use(express.json(),cors(), morgan(':method, :url, :status, :res[content-length] - :response-time ms, :res-body'))
-const jsonParser = bodyParser.json()
 const port = 3002
 const persons = [
     {
@@ -38,7 +36,7 @@ app.get('/api/persons/:id', (req, res) => {
     person ? res.json(person) : res.status(404).end()
 })
 app.post('/api/persons', jsonParser, (body, res) => {
-    if(!body.name || !body.phone){
+    if(!body.name || !body.number){
         return res.status(400).json({
             error: 'Content Missing'
         })
@@ -52,7 +50,7 @@ app.post('/api/persons', jsonParser, (body, res) => {
     const person = {
         id: generateId(),
         name: body.name,
-        phone: body.phone
+        number: body.number
     }
     persons.push(person)
     res.send(persons)
