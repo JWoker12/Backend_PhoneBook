@@ -10,12 +10,12 @@ const port = 3002
 const persons = [
     {
         name: "Ada Lovelace",
-        number: "39-44-5323523",
+        phone: "39-44-5323523",
         id: 1
     },
     {
         name: "Dan Abramov",
-        number: "12-43-234345",
+        phone: "12-43-234345",
         id: 2
     }
 ]
@@ -39,7 +39,7 @@ app.get('/api/persons/:id', (req, res) => {
 })
 app.post('/api/persons', jsonParser, (req, res) => {
     const body = req.body
-    if(!body.name || !body.number){
+    if(!body.name || !body.phone){
         return res.status(400).json({
             error: 'Content Missing'
         })
@@ -53,7 +53,7 @@ app.post('/api/persons', jsonParser, (req, res) => {
     const person = {
         id: generateId(),
         name: body.name,
-        number: body.number
+        phone: body.phone
     }
     persons.push(person)
     res.end()
