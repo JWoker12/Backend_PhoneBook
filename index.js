@@ -14,12 +14,12 @@ const port = 3001;
 const persons = [
     {
         name: "Ada Lovelace",
-        number: "39-44-5323523",
+        phone: "39-44-5323523",
         id: 1,
     },
     {
         name: "Dan Abramov",
-        number: "12-43-234345",
+        phone: "12-43-234345",
         id: 2,
     },
 ];
