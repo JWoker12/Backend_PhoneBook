@@ -58,6 +58,21 @@ app.post('/api/persons', (req, res) => {
     persons.push(person)
     res.send(persons)
 })
+app.put("/api/persons/:id", (req, res) => {
+    const body = req.body;
+    if (!body.phone)
+        res.status(400).json({
+            error: "Content Missing",
+        });
+    const id = Number(req.params.id);
+    const personUpdate = {
+        id: id,
+        name: body.name,
+        phone: body.phone,
+    };
+    persons.map(person => person.id === id ? person : personUpdate)
+    res.send(persons);
+});
 app.delete('/api/persons/:id', (req, res) => {
     const id = Number(req.params.id)
     const personIndex = persons.findIndex(p => p.id === id);
