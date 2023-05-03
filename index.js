@@ -76,8 +76,9 @@ app.put("/api/persons/:id", (req, res) => {
         name: body.name,
         phone: body.phone,
     };
-    persons.map(person => person.id === id ? personUpdate : person)
-    res.send(persons);
+    res.send(
+        persons.map(person => person.id === id ? personUpdate : person)
+    );
 });
 app.delete("/api/persons/:id", (req, res) => {
     const id = Number(req.params.id);
