@@ -61,8 +61,7 @@ app.post("/api/persons", (req, res) => {
         name: body.name,
         phone: body.phone,
     };
-    persons.push(person);
-    res.send(persons);
+    res.send(...persons, person);
 });
 app.put("/api/persons/:id", (req, res) => {
     const body = req.body;
@@ -83,8 +82,7 @@ app.put("/api/persons/:id", (req, res) => {
 app.delete("/api/persons/:id", (req, res) => {
     const id = Number(req.params.id);
     const personIndex = persons.findIndex((p) => p.id === id);
-    persons.splice(personIndex, 1);
-    res.status(204).end();
+    res.status(204).send(persons.splice(personIndex, 1));
 });
 app.listen(port, () => {
     console.log(`Server running on PORT ${port}`);
